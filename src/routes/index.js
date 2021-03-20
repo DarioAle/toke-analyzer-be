@@ -3,17 +3,14 @@ const router = require('express').Router();
 // Tone analyzer libraries
 const ToneAnalyzerV3 = require('ibm-watson/tone-analyzer/v3');
 const { IamAuthenticator } = require('ibm-watson/auth');
-
-const apikey = "IK1qS8GKd61THsn7Ea4MELhjYPVpcTkCc4m03w0Zt_2f";
-const url = 'https://api.us-south.tone-analyzer.watson.cloud.ibm.com/instances/875eabee-ae6e-4f87-905e-5664456f0264/v3/tone?version=2017-09-21';
-
+require('dotenv').config();
 
 const toneAnalyzer = new ToneAnalyzerV3({
     version: '2017-09-21',
     authenticator: new IamAuthenticator({
-      apikey: `${apikey}`
+      apikey: `${process.env.apikey}`
     }),
-    serviceUrl: `${url}`,
+    serviceUrl: `${process.env.url}`,
   });  
 
 // importamos los routes
