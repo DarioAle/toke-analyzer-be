@@ -46,28 +46,27 @@ router.route('/autor').get((req,res) =>{
 })
 
 router.route('/tone').post((req,res) =>{
-    const text = req.body;
 
-    console.log(text.text);
-
+    // console.log(req.body.text);
     const toneParams = {
-        toneInput: { 'text': text },
+        toneInput: { 'text': req.body.text},
         contentType: 'application/json',
         sentences : false
       };
-      
-    // toneAnalyzer.tone(toneParams)
-    //             .then(toneAnalysis => {
-    //                     console.log(JSON.stringify(toneAnalysis, null, 2));
-    //                 })
-    //             .catch(err => {
-    //                     console.log('error:', err);
-    //             });
-    res.json(
-        {
-            instructions : "TODO Make a post to this url",
-        }
-    )
+
+    toneAnalyzer.tone(toneParams)
+                .then(toneAnalysis => {
+                    res.json(
+                       toneAnalysis.result.document_tone
+                    )
+                })
+                .catch(err => {
+                    res.json(
+                        {
+                            error : err
+                        }
+                    )
+                });
 })
 
 module.exports = router;
