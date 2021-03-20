@@ -12,26 +12,27 @@ router.route('/').get((req, res) => {
         {   
             version: "0.0.1",
             paths: {
-                autor :  "/author",
+                autor :  "/autor",
                 home :   "/home",
-                status : "/estoyvivo"
+                tone :   "/tone",
             }
         }
     );
 })
 
-router.route('/author').get((req,res) =>{
+router.route('/autor').get((req,res) =>{
     res.json(
         {
             author : "Darío Arias",
+            servicio : "Cloud Foundry en IBM Cloud"
         }
     )
 })
 
-router.route('/estoyvivo').get((req,res) =>{
+router.route('/tone').get((req,res) =>{
     res.json(
         {
-            status : "Sí estoy vivo",
+            instructions : "TODO Make a post to this url",
         }
     )
 })
